@@ -35,8 +35,20 @@ class BooksApp extends Component {
     })  
   }
 
-  handleChangeShelf() {
-
+  handleChangeShelf(book, shelf) {
+    console.log("%cbook of handleShelfChange- ", 'color:hotpink', book);
+    console.log("%cshelf of handleShelfChange- ", 'color:hotpink', shelf);
+    BooksAPI.update(book, shelf).then((err, resp) => {
+      const modifiedBook = book;
+      modifiedBook.shelf = shelf;
+      let newBooks = [...this.state.books];
+      //console.log('%cnewBooks - ', 'color:hotpink', newBooks);
+      let idx = newBooks.findIndex(newBook => newBook.id === modifiedBook.id);
+      if( idx !== undefined ){
+          newBooks[idx] = modifiedBook;
+      }
+      this.setState({books: newBooks});
+      })
   }
 
   render() {

@@ -8,21 +8,15 @@ class Book extends Component {
         this.state = {
             showChangeShelf: false,
             changeOption: null,
-
         }
         this.handleBookSelect = this.handleBookSelect.bind(this);
-        this.handleShelfChange = this.handleShelfChange.bind(this);
     }
 
     handleBookSelect(book) {
         console.log("%cBookselected..", 'color:green', book );
         this.setState({showChangeShelf: true});
     }
-
-    handleShelfChange(res) {
-        console.log("%cres of handleShelfChange- ", 'color:green', res);
-    }
-
+    
     render(){   
         const {book, handleChangeShelf} = this.props;
         return (
@@ -36,7 +30,7 @@ class Book extends Component {
                         </div>
                 <BookShelfChanger
                         showChangeShelf={this.state.showChangeShelf}
-                        handleChangeShelf={this.handleShelfChange}
+                        handleChangeShelf={this.props.handleChangeShelf}
                         book={book}
                 />
                 </div>
