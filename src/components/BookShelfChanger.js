@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class BookShelfChanger extends Component {
     render() {
         console.log("%cthis.props of BookshelfChanger-", 'color:blue', this.props);
-        if(!this.props.showShelfChange) {
+        if(!this.props.showChangeShelf) {
             return null;
         }
     return(
