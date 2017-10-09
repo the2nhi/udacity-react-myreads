@@ -35,12 +35,17 @@ class BooksApp extends Component {
     })  
   }
 
+  handleChangeShelf() {
+
+  }
+
   render() {
     console.log("%cApp.js - this.state- ", 'color:hotpink', this.state);
     return (
       <div className="app">
           <ListBooks
             books={this.state.books}
+            handleChangeShelf={this.handleChangeShelf.bind(this)}
         />
       </div>   
     )

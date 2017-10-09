@@ -15,19 +15,10 @@ class ListBooks extends Component {
 
     componentWillReceiveProps(nextProps ){
         console.log("%cListBooks- componentwillreceiveprops- nexProps-", 'color:orange', nextProps);
-        // set state for shelves
         let tempBookList = nextProps.books;
         let current_list = tempBookList.filter((b) => b.shelf == "currentlyReading");
         let want_list = tempBookList.filter((b) => b.shelf == "wantToRead");
         let read_list = tempBookList.filter((b) => b.shelf == "read");
-
-
-        /*
-         if (this.props.userFilter) {
-      showingPosts = showingPosts.filter((p) => +p.userId === +this.props.userFilter);
-    }
-        */
-
         this.setState({books: nextProps.books, current_shelf: current_list, want_shelf: want_list, read_shelf: read_list});
     }
 
@@ -43,16 +34,19 @@ class ListBooks extends Component {
             </div>
                 <div className="list-books-content">
                     <Bookshelf
-                        title={currentlyReading}
                         books={this.state.current_shelf}
+                        title={currentlyReading}
+                        handleChangeShelf={this.props.handleChangeShelf}
                     />
                     <Bookshelf
-                        title={wantToRead}
                         books={this.state.want_shelf}
+                        title={wantToRead}
+                        handleChangeShelf={this.props.handleChangeShelf}
                     />
                     <Bookshelf
-                        title={read}
                         books={this.state.read_shelf}
+                        title={read}
+                        handleChangeShelf={this.props.handleChangeShelf}
                     />
                 </div>
           </div>
