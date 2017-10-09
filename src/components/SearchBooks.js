@@ -6,20 +6,30 @@ class SearchBooks extends Component {
         this.state = {
             title: undefined,
             author: undefined,
+            searchInput: undefined,
         }
         this.handleCancelSearch = this.handleCancelSearch.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    handleCancelSearch(){
+    handleCancelSearch() {
         console.log("%cSearchbooks cancel clicked..", 'color:red');
-        this.props.handleCancelSearch;
+        this.props.handleCancelSearch();
+    }
+
+    handleInputChange(e) {
+        console.log("%chandleBodyChange..... ", 'color:purple', e.target.value);
+        this.setState({searchInput: e.target.value});
     }
 
     render() {
+        if(!this.props.showSearchPage) {
+            return null;
+        }
     return(
         <div className="search-books">
         <div className="search-books-bar">
-            <a className="close-search" onClick={() => this.handleCancelSearch}>Close</a>
+            <a className="close-search" onClick={() => this.handleCancelSearch()}>Close</a>
             <div className="search-books-input-wrapper">
             {/*
                 NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -28,7 +38,11 @@ class SearchBooks extends Component {
                 However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                 you don't find a specific author or title. Every search is limited by search terms.
             */}
-            <input type="text" placeholder="Search by title or author"/>
+            <input 
+                type="text" 
+                onChange={this.handleInputChange}    
+                placeholder="Search by title or author"
+            />
 
             </div>
         </div>

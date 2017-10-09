@@ -16,7 +16,7 @@ class Book extends Component {
         console.log("%cBookselected..", 'color:green', book );
         this.setState({showChangeShelf: true});
     }
-    
+
     render(){   
         const {book, handleChangeShelf} = this.props;
         return (
@@ -26,13 +26,15 @@ class Book extends Component {
                         width: 128, height: 188, 
                         backgroundImage:`url(${book.imageLinks.smallThumbnail})`,
                         }}
-                        onClick={ () => this.handleBookSelect(book) } >
+                    >
                         </div>
-                <BookShelfChanger
+                    <div className="book-shelf-changer" onClick={ () => this.handleBookSelect(book) } >
+                    <BookShelfChanger
                         showChangeShelf={this.state.showChangeShelf}
                         handleChangeShelf={this.props.handleChangeShelf}
                         book={book}
-                />
+                    />
+                    </div>
                 </div>
                 <div className="book-title">
                 {book.title}

@@ -8,13 +8,14 @@ import './App.css';
 class BooksApp extends Component {
   state = {
     books: [],
+    filterBooks: [],
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false
+    showSearchPage: true
   }
 
   getInitialState() {
@@ -34,6 +35,10 @@ class BooksApp extends Component {
       //console.log("%cApp.js - componentWillMount - books ", 'color:hotpink', books);
       this.setState({ books });
     })  
+  }
+
+  filterBooks() {
+
   }
 
   handleCancelSearch() {
@@ -62,6 +67,7 @@ class BooksApp extends Component {
     return (
       <div className="app">
         <SearchBooks
+          showSearchPage={this.state.showSearchPage}
           handleCancelSearch={this.handleCancelSearch.bind(this)}
         />
         <ListBooks
