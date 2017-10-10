@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter, Router, Route } from 'react-router-dom'
+import { BrowserRouter, Router, Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI';
 import ListBooks from './components/ListBooks';
 import SearchBooks from './components/SearchBooks';
@@ -55,15 +55,28 @@ class BooksApp extends Component {
     console.log("%cApp.js - this.state- ", 'color:hotpink', this.state);
     return (
       <div className="app">
-      <HashRouter> 
-        <Route exact path='/' render={() => (
-          <ListBooks
-            books={this.state.books}
-            handleChangeShelf={this.handleChangeShelf.bind(this)}
+      <BrowserRouter>
+        <div>
+          <Route exact path='/search' render={() => (
+            <SearchBooks
+              showSearchPage={this.state.showSearchPage}
+              handleCancelSearch={this.handleCancelSearch.bind(this)}
+            />
+          )}
+          />  
+        </div>
+      </BrowserRouter>
+      <BrowserRouter> 
+        <div>
+          <Route exact path='/' render={() => (
+            <ListBooks
+              books={this.state.books}
+              handleChangeShelf={this.handleChangeShelf.bind(this)}
+            />
+          )}
           />
-        )}
-        />
-      </HashRouter>
+          </div>
+      </BrowserRouter>
       </div>   
     )
   }
