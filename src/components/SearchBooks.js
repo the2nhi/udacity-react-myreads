@@ -23,6 +23,7 @@ class SearchBooks extends Component {
     }
 
     render() {
+        console.log("%cSearchBooks props- ", 'color:magenta', this.props);
         if(!this.props.showSearchPage) {
             return null;
         }
