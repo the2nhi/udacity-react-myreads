@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
+import { HashRouter, Router, Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI';
 import ListBooks from './components/ListBooks';
 import SearchBooks from './components/SearchBooks';
@@ -17,17 +17,6 @@ class BooksApp extends Component {
      */
     showSearchPage: true
   }
-
-  getInitialState() {
-
-  }
-
-  // componentWillMount() {
-  //   console.log("%cApp.js - componentWillMount ", 'color:hotpink', this.state);
-  //   BooksAPI.getAll().then((books) => {
-  //     this.setState({ books });
-  //   })  
-  // }
 
   componentWillMount() {
     console.log("%cApp.js - componentWillMount ", 'color:hotpink', this.state);
@@ -49,7 +38,7 @@ class BooksApp extends Component {
   handleChangeShelf(book, shelf) {
     console.log("%cbook of handleShelfChange- ", 'color:hotpink', book);
     console.log("%cshelf of handleShelfChange- ", 'color:hotpink', shelf);
-    BooksAPI.update(book, shelf).then((err, resp) => {
+    BooksAPI.update(book, shelf).then(() => {
       const modifiedBook = book;
       modifiedBook.shelf = shelf;
       let newBooks = [...this.state.books];
@@ -66,18 +55,22 @@ class BooksApp extends Component {
     console.log("%cApp.js - this.state- ", 'color:hotpink', this.state);
     return (
       <div className="app">
-        <SearchBooks
-          showSearchPage={this.state.showSearchPage}
-          handleCancelSearch={this.handleCancelSearch.bind(this)}
+      <HashRouter> 
+        <Route exact path='/' render={() => (
+          <ListBooks
+            books={this.state.books}
+            handleChangeShelf={this.handleChangeShelf.bind(this)}
+          />
+        )}
         />
-        <ListBooks
-          books={this.state.books}
-          handleChangeShelf={this.handleChangeShelf.bind(this)}
-        />
+      </HashRouter>
       </div>   
     )
   }
 }
 
   export default BooksApp;
+
+
+
   

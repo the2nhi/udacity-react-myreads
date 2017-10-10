@@ -27,7 +27,7 @@ class Book extends Component {
                         backgroundImage:`url(${book.imageLinks.smallThumbnail})`,
                         }}
                     >
-                        </div>
+                    </div>
                     <div className="book-shelf-changer" onClick={ () => this.handleBookSelect(book) } >
                     <BookShelfChanger
                         showChangeShelf={this.state.showChangeShelf}
