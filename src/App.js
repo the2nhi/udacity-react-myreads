@@ -62,16 +62,8 @@ class BooksApp extends Component {
     console.log("%cApp.js - this.state- ", 'color:hotpink', this.state);
     return (
       <div className="app">
-     
       <BrowserRouter> 
         <div>
-
-          <Link to="/search">
-            <div className="open-search">
-              <a onClick={() => this.handleClickSearch()}>Add a book</a>
-            </div>
-          </Link>(' ')
-
         <Switch>  
             <Route exact path='/' render={() => (
               <ListBooks
@@ -80,7 +72,7 @@ class BooksApp extends Component {
               />
             )}
             />
-            <Route exact path='/search' render={() => (
+            <Route path='/search' render={() => (
               <SearchBooks
                 showSearchPage={this.state.showSearchPage}
                 handleCancelSearch={this.handleCancelSearch}

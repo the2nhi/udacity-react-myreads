@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import '../App.css';
 import Bookshelf from './BookShelf';
 
@@ -21,6 +22,11 @@ class ListBooks extends Component {
         let read_list = tempBookList.filter((b) => b.shelf == "read");
         this.setState({books: nextProps.books, current_shelf: current_list, want_shelf: want_list, read_shelf: read_list});
     }
+
+    handleClickSearch(){
+        console.log("%chandleClickSearch selected..", 'color:hotpink');
+        // this.setState({ showSearchPage: true });
+      }
 
     render() {
         const currentlyReading = "Currently Reading";
@@ -49,6 +55,10 @@ class ListBooks extends Component {
                         handleChangeShelf={this.props.handleChangeShelf}
                     />
                 </div>
+                <Link 
+                  to='/search'
+                  className='open-search'
+                >Add a book</Link>
           </div>
           
         )
